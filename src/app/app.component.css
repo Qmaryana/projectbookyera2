@@ -1,0 +1,22 @@
+ul {
+  display: flex;
+  /* מסדר את הדף לפי הגודל חלונית*/
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+  /*Padding is the space inside an element*/
+  list-style-type: none;
+  text-align: center;
+}
+
+li a {
+  display: block;
+  padding: 14px 16px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+/* Style for active link */
+ul li.active a {
+  font-weight: bold;
+}

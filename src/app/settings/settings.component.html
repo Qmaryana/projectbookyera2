@@ -1,0 +1,27 @@
+<div class="center">
+  <div>
+    <label>
+      <input type="checkbox" (change)="SetDarkMode($event)"> <!--קריאה לפונקציה שמשנה צבע-->
+      click to change mode
+    </label>
+        <br>
+    <div class="style">
+      <h2>Add Administrator:</h2>
+      <h3>Only 2 administrators!</h3>
+      <br>
+      <input type="text" [(ngModel)]="newAdmin" (keyup.enter)="addAdmin()">
+    </div>
+    <div *ngIf="admins.length > 2" >Maximum 2 administrators allowed</div>
+    <ul>
+      <li *ngFor="let admin of admins">Admin: {{ admin }}</li>
+    </ul>
+  </div>
+</div> 
+
+<!--<label> contains an <input> element of type checkbox. -->
+
+<!--[(ngModel)] -->
+<!--משייך את האינפוט של הטופס לטופס, ה קבוכ צריך לרשום כל פעם עוזר לנו בתנאים של מה שצריך להיות בטופס-->
+
+
+<!--(keyup.enter) מאזין ללחיצה וקורא לפונקיצה-->

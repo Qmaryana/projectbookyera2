@@ -1,0 +1,10 @@
+<div class="books-container">
+  <h1>Books in the Library</h1>
+  <ul>
+    <li *ngFor="let book of books">
+      <img [src]="book.image" alt="Book Cover">
+      <span>{{ book.name }} By {{ book.author }} Tags {{book.tags}} Quantity {{book.quantity}}</span>
+    </li>
+  </ul>
+  <h2 *ngIf="books.length === 0">No books added yet.</h2>
+</div>
