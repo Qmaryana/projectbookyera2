@@ -34,3 +34,8 @@
 .form-container button:hover {
   background-color: #204769;
 }
+
+.error {
+  color: red;
+  font-size: small;
+}

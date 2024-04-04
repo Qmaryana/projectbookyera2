@@ -5,7 +5,11 @@ import { Injectable } from '@angular/core';
 })
 export class ServiesService {
 
-  private isDarkMode = false; //This property is used to keep track of whether dark mode is enabled or not.
+  private isDarkMode = false;
+  private books: any[] = [];
+  private admins: string[] = []; // Add administrators array
+
+  constructor() { }
 
   toggleDarkMode = () => {
     this.isDarkMode = !this.isDarkMode;
@@ -17,24 +21,38 @@ export class ServiesService {
     document.body.classList.toggle('light-mode', !this.isDarkMode);
   }
 
-  isDarkModeEnabled = (): boolean => { // isDarkMode מחזירה ערך נוכחי של המשתנה 
+  isDarkModeEnabled = (): boolean => {
     return this.isDarkMode;
   }
 
-  constructor() { }
-
-  private books: any[] = []; //מערך של ספרים
-
-  addBook = (book: any) => { //ולוקחת אובייקט ספר ודוחפת אותו למערך הספרים, ומוסיפה למעשה ספר חדש לרשימה
+  addBook = (book: any) => {
     this.books.push(book);
   }
 
-  getBooks = () => { //מחזירה את מערך הספרים, ומאפשרת גישה לרשימת הספרים מחוץ לסרביס.
+  getBooks = () => {
     return this.books;
   }
+
+  // New methods for managing administrators
+  addAdmin = (newAdmin: string) => {
+    if (newAdmin.trim() === '') {
+      return 'Empty field!';
+    }
+    if (this.admins.length < 2) {
+      this.admins.push(newAdmin.trim());
+      return 'Administrator added successfully';
+    } else {
+      return 'Maximum 2 administrators allowed';
+    }
+  }
+
+  getAdmins = () => {
+    return this.admins;
+  }
 }
-//toggleDarkMode = () => { ... }: 
-//מחליפה את המאפיין isDarkMode בין true ל-false 
+
+//toggleDarkMode = () => { ... }:
+//מחליפה את המאפיין isDarkMode בין true ל-false
 //גם קורא ל-updateBodyClass כדי לעדכן את הגוף למצב החדש.
 
 //private updateBodyClass מחליפה בין הכהה ולבהיר בהתבסס על המצב הנוכחי של המשתנה שלנו

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ServiesService } from '../servies.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-add',
@@ -7,25 +8,32 @@ import { ServiesService } from '../servies.service';
   styleUrls: ['./add.component.css']
 })
 export class AddComponent {
-  newBook = { name: '', author: '', tags: '', quantity: 0, image: '' }; //הגדרת אובייקט
+  newBook = { name: '', author: '', tags: '', quantity: 0, image: '' };
+  isImageUploaded = false; // Flag to track if an image has been uploaded
 
   constructor(private ServiesService: ServiesService) { }
 
-  addBook = () => {
-    this.ServiesService.addBook(this.newBook); //קורא לפונקציה מהסרביס
-    alert('Book added successfully!');
-    this.newBook = { name: '', author: '', tags: '', quantity: 0, image: '' }; //איפוס האובייקט
+  addBook = (form: NgForm) => {
+    if (this.isImageUploaded) { // Check if an image has been uploaded
+      this.ServiesService.addBook(this.newBook);
+      alert('Book added successfully!');
+      this.newBook = { name: '', author: '', tags: '', quantity: 0, image: '' };
+      this.isImageUploaded = false; // Reset the image uploaded flag
+      form.resetForm(); // Reset the form including its state
+    } else {
+      alert('Please upload an image for the book.');
+    }
   }
 
   onFileSelected = (event: any) => {
-    const file: File = event.target.files[0]; // מכיל קובץ של התמונה
+    const file: File = event.target.files[0];
     if (file) {
-      const reader = new FileReader(); //קורא את הקובץ Read the file as a data URL
-      reader.onload = (e) => { //indicating that the file has been successfully loaded.
-        // Set the data URL as the image source
-        this.newBook.image = reader.result as string; //מכיל את נתוני הקובץ ככתובת URL לנתונים
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.newBook.image = reader.result as string;
+        this.isImageUploaded = true; // Set the flag to true as the image is loaded
       };
-      reader.readAsDataURL(file); // קורא את הקובץ ככתובת URL לנתונים
+      reader.readAsDataURL(file);
     }
   }
 }

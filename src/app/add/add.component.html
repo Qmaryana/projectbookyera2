@@ -1,22 +1,27 @@
 <div class="form-container">
   <h2>Add New Book</h2>
-  <form (ngSubmit)="addBook()"> <!--קריאה לפונקציה-->
+  <form (ngSubmit)="addBook(bookForm)" #bookForm="ngForm"> <!-- Pass the form to the addBook method -->
     <label for="bookName">Book Name:</label>
-    <input type="text" id="bookName" name="bookName" [(ngModel)]="newBook.name" required>
+    <input type="text" id="bookName" name="bookName" [(ngModel)]="newBook.name" required #bookName="ngModel">
+    <div *ngIf="bookName.touched && bookName.invalid" class="error">Please fill the field</div>
 
     <label for="bookAuthor">Author:</label>
-    <input type="text" id="bookAuthor" name="bookAuthor" [(ngModel)]="newBook.author" required>
+    <input type="text" id="bookAuthor" name="bookAuthor" [(ngModel)]="newBook.author" required #bookAuthor="ngModel">
+    <div *ngIf="bookAuthor.touched && bookAuthor.invalid" class="error">Please fill the field</div>
 
     <label for="bookTags">Tags:</label>
-    <input type="text" id="bookTags" name="bookTags" [(ngModel)]="newBook.tags" required>
+    <input type="text" id="bookTags" name="bookTags" [(ngModel)]="newBook.tags" required #bookTags="ngModel">
+    <div *ngIf="bookTags.touched && bookTags.invalid" class="error">Please fill the field</div>
 
     <label for="bookQuantity">Quantity:</label>
-    <input type="number" id="bookQuantity" name="bookQuantity" [(ngModel)]="newBook.quantity" required>
+    <input type="number" id="bookQuantity" name="bookQuantity" [(ngModel)]="newBook.quantity" required #bookQuantity="ngModel">
+    <div *ngIf="bookQuantity.touched && bookQuantity.invalid" class="error">Please fill the field</div>
 
     <label for="bookImage">Image:</label>
-    <input type="file" id="bookImage" name="bookImage" (change)="onFileSelected($event)">  <!--קריאה לפונקציה-->
+    <input type="file" id="bookImage" name="bookImage" (change)="onFileSelected($event)" required>
+    <!-- Removed the #bookImage="ngModel" since it doesn't apply to file inputs -->
 
-    <button type="submit">Add Book</button>
+    <button type="submit" [disabled]="!bookForm.form.valid" [style.cursor]="!bookForm.form.valid ? 'not-allowed' : 'pointer'">Add Book</button>
   </form>
 </div>
 

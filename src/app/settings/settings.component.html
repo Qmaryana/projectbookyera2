@@ -1,9 +1,9 @@
 <div class="center">
   <div>
-    <label>
-      <input type="checkbox" (change)="SetDarkMode($event)"> <!--קריאה לפונקציה שמשנה צבע-->
-      click to change mode
-    </label>
+ <!-- Clickable sentence to change mode -->
+ <div (click)="SetDarkMode($event)" style="cursor: pointer;">
+  Click to change mode
+</div>
         <br>
     <div class="style">
       <h2>Add Administrator:</h2>

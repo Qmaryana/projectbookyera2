@@ -8,22 +8,21 @@ import { ServiesService } from '../servies.service'; // import
 })
 export class SettingsComponent {
 
-  newAdmin: string = ''; // משתנה
-  admins: string[] = []; //משתנה של מערך
+  newAdmin: string = '';
 
-  constructor(private serviesService: ServiesService) { } //הגדרנו סרביס כדי שיעבוד
+  constructor(private serviesService: ServiesService) { }
 
-  SetDarkMode = (event: Event) => { // קריאה לפונקציה של הסרביס
+  SetDarkMode = (event: Event) => {
     this.serviesService.toggleDarkMode();
   }
 
   addAdmin = () => {
-    if (this.admins.length < 2 && this.newAdmin.trim() !== '') { // בודק אם האינפוט קטן מ2 וגם שהמחרוזת לא ריקה
-      this.admins.push(this.newAdmin.trim()); //אם התנאים יתקיימו הוסיף אותם למערך
-      this.newAdmin = ''; //מאפס מחדש
-    } else {
-      alert('Maximum 2 administrators allowed');
-    }
+    const result = this.serviesService.addAdmin(this.newAdmin);
+    alert(result); // Show the result as an alert (success or error message)
+    this.newAdmin = ''; // Reset input field
+  }
+
+  get admins() {
+    return this.serviesService.getAdmins(); // Retrieve the list of admins from the service
   }
 }
-//trim זה מבטיח שאם המשתמש מזין בטעות רווחים נוספים לפני או אחרי שם המנהל, רווחים אלה יוסרו לפני בדיקת אורך השם או הוספתו למערך המנהלים
