@@ -10,7 +10,6 @@ import { NgForm } from '@angular/forms';
 export class AddComponent {
   newBook = { name: '', author: '', tags: '', quantity: 0, image: '' };
   isImageUploaded = false; // Flag to track if an image has been uploaded
-
   constructor(private ServiesService: ServiesService) { }
 
   addBook = (form: NgForm) => {
