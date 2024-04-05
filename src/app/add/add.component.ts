@@ -26,10 +26,10 @@ export class AddComponent {
   }
 
   onFileSelected = (event: any) => {
-    const file: File = event.target.files[0];
+    const file: File = event.target.files[0]; //שורה זו מאחזרת את הקובץ שנבחר מהאירוע. זה מניח שרק קובץ אחד נבחר
     if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
+      const reader = new FileReader(); //וצר אובייקט חדש המשמש לקריאת התוכן של הקובץ שנבחר
+      reader.onload = () => { //מטפל באירועים כאשר הקובץ נטען.
         this.newBook.image = reader.result as string;
         this.isImageUploaded = true; // Set the flag to true as the image is loaded
       };
