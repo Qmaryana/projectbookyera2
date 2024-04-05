@@ -3,17 +3,17 @@
   margin: 0 auto;
 }
 
-.form-container h2 {
+h2 {
   font-size: 1.5em;
   margin-bottom: 15px;
 }
 
-.form-container label {
+label {
   display: block;
   margin-bottom: 5px;
 }
 
-.form-container input {
+input {
   width: 100%;
   padding: 8px;
   margin-bottom: 10px;
@@ -21,7 +21,7 @@
   border: 1px solid #ccc;
 }
 
-.form-container button {
+button {
   background-color: #34516b;
   color: white;
   font-weight: bold;
@@ -31,7 +31,7 @@
   border-radius: 3px;
 }
 
-.form-container button:hover {
+button:hover {
   background-color: #204769;
 }
 

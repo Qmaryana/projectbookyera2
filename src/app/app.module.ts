@@ -16,6 +16,7 @@ const appRouting: Routes = [ // מערך של הדפים שלנו
   { path: 'add', component: AddComponent },
   { path: 'booksin', component: BooksinComponent },
   { path: 'settings', component: SettingsComponent },
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

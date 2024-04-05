@@ -33,7 +33,8 @@ export class AddComponent {
         this.newBook.image = reader.result as string;
         this.isImageUploaded = true; // Set the flag to true as the image is loaded
       };
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(file); //קוראת את התוכן של הקובץ  שצוין ככתובת URL של נתונים.
     }
   }
 }
+//הוא מחלץ את הקובץ שנבחר, קורא אותו ככתובת URL לנתונים באמצעות FileReader
